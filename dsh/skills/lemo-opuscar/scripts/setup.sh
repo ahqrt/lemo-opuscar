@@ -1,5 +1,5 @@
 #!/bin/sh
-# Lemo-Opuscar skill: find or install the style library, then print its path.
+# Lemo-Opuscar skill (DeepSeek Harness edition): find or install the style library, then print its path.
 #   sh setup.sh                    library ready? (clone on first run, update later) → prints LIB=<path>
 #   sh setup.sh deps [voice] [music]
 #                                  install packages: core = Node packages, headless browser, Python core tier;
@@ -7,8 +7,9 @@
 #   sh setup.sh demo <slug>        add one style's demo source and poster to the library (reference only)
 # The library is a sparse clone of the main branch: guides, core/ tools and every STYLE.md. Big assets: tools/fetch.sh.
 # LEMO_OPUSCAR_HOME = where the library lives (default: the clone you stand in, else ~/lemo-opuscar).
+# LEMO_OPUSCAR_REPO = which edition to clone; this one defaults to the DeepSeek Harness fork.
 set -e
-REPO=${LEMO_OPUSCAR_REPO:-https://github.com/lemomo-ai/lemo-opuscar.git}
+REPO=${LEMO_OPUSCAR_REPO:-https://github.com/ahqrt/lemo-opuscar.git}
 
 # 1. Which library: $LEMO_OPUSCAR_HOME, else the clone we are standing in, else ~/lemo-opuscar
 is_lib() { [ -f "$1/AGENTS.md" ] && [ -d "$1/core/render" ]; }

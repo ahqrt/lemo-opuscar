@@ -9,6 +9,10 @@
 
 <a href="https://trendshift.io/repositories/262645?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-262645" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/262645/daily?language=JavaScript" alt="lemomo-ai%2Flemo-opuscar | Trendshift" width="250" height="55"/></a>
 
+🛠️ **这是 DeepSeek Harness 版。** 从 [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) fork 而来，
+改成以 Harness 技能的方式安装，不再走 Claude Code 插件。风格、指南和工具都没改。
+第一次出片前先看 [`dsh/README.md`](dsh/README.md) 和 [`dsh/DEEPSEEK.md`](dsh/DEEPSEEK.md)。
+
 ⚠️ **本插件为 Claude 专用。** 风格都是按 Claude Opus 5.5 调出来的，<br>
 其他模型适配度不高，请谨慎使用。
 
@@ -61,24 +65,24 @@
 在终端里：
 
 ```sh
-claude plugin marketplace add lemomo-ai/lemo-opuscar
-claude plugin install lemo-opuscar@lemolab
+git clone https://github.com/ahqrt/lemo-opuscar.git
+sh lemo-opuscar/dsh/install.sh
 ```
 
-之后在任何目录都能用。
+之后在任何目录都能用，细节见 [`dsh/README.md`](dsh/README.md)。
 
+- 安装脚本会在 `~/.agents/skills/lemo-opuscar` 建软链接，`git pull` 之后不用重装。
 - 第一次使用时，它会把指南、工具和风格提示词下载到 `~/lemo-opuscar`，所有片子共用这一份。
 - 每支片子的工程，从源码到成片，都放在你发起时所在的文件夹里。
-- 其他 agent 可以把 [`plugin/skills/lemo-opuscar/`](plugin/skills/lemo-opuscar/) 复制到它们的 skills 目录。
 
 ### 方式二：clone 仓库
 
 ```sh
-git clone https://github.com/lemomo-ai/lemo-opuscar.git
+git clone https://github.com/ahqrt/lemo-opuscar.git
 cd lemo-opuscar
-claude
 ```
 
+在这个文件夹里开一个 Harness 会话，它会直接读 `AGENTS.md`。
 片子做到仓库里的 `films/<名字>/`。
 
 ### 然后直接说
@@ -89,7 +93,7 @@ claude
 
 风格用中文名、英文名或文件夹名都行，全部风格见[风格索引](styles/README.md)。
 
-还没想好也没关系：装成 skill 的，输入 `/lemo-opuscar:lemo-opuscar` 直接启动。它先问你用什么语言，再问这次想做什么：用库里的风格做片、[把风格改成你自己的](#改成你自己的风格)，或者用你存过的风格。
+还没想好也没关系：装成 skill 的，直接说想做个片子就行。它先问你用什么语言，再问这次想做什么：用库里的风格做片、[把风格改成你自己的](#改成你自己的风格)，或者用你存过的风格。
 
 它开工前只问你一次：
 
@@ -149,18 +153,18 @@ agent 会读三份指南，像一个小工作室一样开工。<br>
 
 ### 更新和卸载
 
-更新，然后重启 Claude Code（`~/lemo-opuscar` 里的库会在下一次做片时自动更新）：
+更新技能本身（软链接是实时的），然后开一个新会话。`~/lemo-opuscar` 里的库会在下一次做片时自动更新：
 
 ```sh
-claude plugin marketplace update lemolab && claude plugin update lemo-opuscar@lemolab
+cd lemo-opuscar && git pull
 ```
 
 更新后照常说要做什么片；想把风格改成自己的，看[上面](#改成你自己的风格)。
 
-卸载，然后删除 `~/lemo-opuscar`：
+卸载技能（只删软链接；不要那个库了，自己删 `~/lemo-opuscar`）：
 
 ```sh
-claude plugin uninstall lemo-opuscar@lemolab
+sh lemo-opuscar/dsh/uninstall.sh
 ```
 
 你自己的风格存在 `~/lemo-my-styles/`，更新和卸载都不会删；不要了就自己删掉这个文件夹。

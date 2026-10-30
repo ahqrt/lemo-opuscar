@@ -50,6 +50,11 @@ Back up first (old versions move out of the repository, not into git). Re-render
 
 ## Directory edition
 
+> **Not in this fork.** The DeepSeek Harness edition removed `.claude-plugin/` and the Claude plugin
+> marketplace install path, so this section — and `tools/directory.py`, which builds the Claude
+> plugin-directory branch — no longer applies here. It is kept for upstream reference. The Harness
+> install path is [`dsh/install.sh`](dsh/install.sh) (see [`dsh/README.md`](dsh/README.md)).
+
 The Claude plugin directory lists a self-contained build of the plugin, on the orphan branch `directory` (the submission tracks that branch; `main` stays what visitors see). It carries the guides, every `STYLE.md` / `style.json` / `DEMO.md`, `core/` (without the Poly Haven models, which only demo code uses) and its own `README.md`, `SECURITY.md` and `SKILL.md`: nothing is cloned or fetched to tell the agent what to do, there are no demo sources, and Chinese edge-tts narration is used only with the user's consent. The sources of the plugin-only files are in `tools/directory/`; the build and its checks (file sizes, personal info) are in `tools/directory.py`.
 
 After a release on `main` (new styles, changed guides or tools):

@@ -18,8 +18,8 @@ This repository is a library of film styles. Each style has a `styles/<slug>/STY
 ## Start
 
 - **Their own styles first.** If `~/lemo-my-styles/README.md` exists, read it: it lists every style the user has saved, wherever it's kept, and their own styles ([`MY-STYLES.md`](MY-STYLES.md)) count like library styles. When they name a style, look there first, then in the library.
-- **Their language.** Talk to them in the language they write in. When they started the skill without writing anything, your first question is always the language, even when their settings, memory or earlier messages suggest one: the `AskUserQuestion` tool, a question of its own headed "Language 语言" with two options, 中文 and English (the tool adds Other, where they type any other language). Use it from then on, and as the film's default language.
-- **No request yet** (they only started the skill, or said hello): offer the ways in with one question, using the `AskUserQuestion` tool, in their language, with the first as the recommended one:
+- **Their language.** Talk to them in the language they write in. When they started the skill without writing anything, your first question is always the language, even when their settings, memory or earlier messages suggest one: the `ask_user_question` tool, a question of its own headed "Language 语言" with two options, 中文 and English (the tool adds Other, where they type any other language). Use it from then on, and as the film's default language.
+- **No request yet** (they only started the skill, or said hello): offer the ways in with one question, using the `ask_user_question` tool, in their language, with the first as the recommended one:
   1. a film in a library style (**Finding the style**);
   2. change a library style and keep it as their own ([`MY-STYLES.md`](MY-STYLES.md));
   3. make their own style from a blank page ([`MY-STYLES.md`](MY-STYLES.md));
@@ -44,7 +44,7 @@ If the user hasn't picked a style:
 - If they have their own styles, list those first, under "My styles" (in their language).
 - Show them the full list below in the chat, in the user's language only: English names (and English category names) for someone writing in English, Chinese names for someone writing in Chinese. Don't drop, merge or rename anything.
 - Link the gallery, where every style has its demo film: https://lemomo-ai.github.io/lemo-opuscar/
-- Then ask them to type the name. The list goes in your own message (a command's output isn't shown to them), and the question is plain text, not `AskUserQuestion`: its few options would hide the rest of the list.
+- Then ask them to type the name. The list goes in your own message (a command's output isn't shown to them), and the question is plain text, not `ask_user_question`: its few options would hide the rest of the list.
 
 <!-- style-list:start -->
 All 66 styles · 全部风格:
@@ -69,7 +69,7 @@ All 66 styles · 全部风格:
    - whether they have material of their own: a voice recording or a preferred voice, music, photos, logos, fonts, and for a style built from real material, their own data or scans;
    - the film's language, if it isn't obvious (default: the language they write in or chose, for voice and subtitles);
    - whether they want to review a storyboard first (default: no);
-   - anything missing on their machine: first run `sh plugin/skills/lemo-opuscar/scripts/setup.sh deps` from the library root (core only) and include what it reports. Add the voice and music tiers later, only if the film needs them (TECHNIQUE.md §1).
+   - anything missing on their machine: first run `sh dsh/skills/lemo-opuscar/scripts/setup.sh deps` from the library root (core only) and include what it reports. Add the voice and music tiers later, only if the film needs them (TECHNIQUE.md §1).
 
    Skip what their request already answers. Wait for the reply, fill every other gap with a sensible default, sum up the brief in a few lines and start. Don't come back with more questions.
 2. **Treatment.** Write `TREATMENT.md` in the project folder (DIRECTOR.md §4), before you open the demo (an Edit & Documentary style gathers its material first: **Treatment first** above).

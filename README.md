@@ -10,6 +10,10 @@ Pick a style or make one from scratch, bring your story, and let your coding age
 
 <a href="https://trendshift.io/repositories/262645?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-262645" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/262645/daily?language=JavaScript" alt="lemomo-ai%2Flemo-opuscar | Trendshift" width="250" height="55"/></a>
 
+🛠️ **This is the DeepSeek Harness edition.** Forked from [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar)
+and reworked to install as a Harness skill instead of a Claude Code plugin. Styles, guides and tools are unchanged.
+Start with [`dsh/README.md`](dsh/README.md) (中文) and [`dsh/DEEPSEEK.md`](dsh/DEEPSEEK.md) before your first film.
+
 ⚠️ **Built for Claude.** The styles are tuned for Claude Opus 5.5;<br>
 other models may not reproduce them well, so use them with care.
 
@@ -62,24 +66,24 @@ Two ways in; the skill is the easiest.
 In your terminal:
 
 ```sh
-claude plugin marketplace add lemomo-ai/lemo-opuscar
-claude plugin install lemo-opuscar@lemolab
+git clone https://github.com/ahqrt/lemo-opuscar.git
+sh lemo-opuscar/dsh/install.sh
 ```
 
-Then use it from any folder.
+Then use it from any folder. See [`dsh/README.md`](dsh/README.md) for details.
 
+- The installer symlinks the skill into `~/.agents/skills/lemo-opuscar`, so `git pull` keeps it current.
 - On first use it downloads the guides, tools and style prompts to `~/lemo-opuscar`, shared by all your films.
 - Each film's project, from source to finished video, goes in the folder you started from.
-- For other agents, copy [`plugin/skills/lemo-opuscar/`](plugin/skills/lemo-opuscar/) into their skills folder.
 
 ### Option 2: clone the repo
 
 ```sh
-git clone https://github.com/lemomo-ai/lemo-opuscar.git
+git clone https://github.com/ahqrt/lemo-opuscar.git
 cd lemo-opuscar
-claude
 ```
 
+Then open a Harness session in this folder; it reads `AGENTS.md` directly.
 Films go into `films/<name>/` inside the repo.
 
 ### Then just say what you want
@@ -90,7 +94,7 @@ Films go into `films/<name>/` inside the repo.
 
 Name the style in English or Chinese; the [style index](styles/README.md) lists them all.
 
-Not sure yet? With the skill installed, type `/lemo-opuscar:lemo-opuscar` and nothing else. It asks which language to use, then what you'd like to do: a film in a library style, [make a style your own](#make-a-style-your-own), or a film in a style you've saved.
+Not sure yet? With the skill installed, just say you want to make a film and nothing else. It asks which language to use, then what you'd like to do: a film in a library style, [make a style your own](#make-a-style-your-own), or a film in a style you've saved.
 
 It asks you once, up front:
 
@@ -149,18 +153,18 @@ Library updates and reinstalling never touch them. When the base style is update
 
 ### Update or uninstall
 
-Update, then restart Claude Code (the library in `~/lemo-opuscar` updates itself on the next film):
+Update the skill itself (the symlink keeps it live), then open a new session. The library in `~/lemo-opuscar` updates itself on the next film:
 
 ```sh
-claude plugin marketplace update lemolab && claude plugin update lemo-opuscar@lemolab
+cd lemo-opuscar && git pull
 ```
 
 After an update, ask for a film as usual; to make a style your own, see [above](#make-a-style-your-own).
 
-Uninstall, then delete `~/lemo-opuscar`:
+Uninstall the skill (this only removes the symlink; delete `~/lemo-opuscar` yourself if you don't want the library):
 
 ```sh
-claude plugin uninstall lemo-opuscar@lemolab
+sh lemo-opuscar/dsh/uninstall.sh
 ```
 
 Your own styles in `~/lemo-my-styles/` stay through updates and uninstalls; delete that folder yourself if you don't want them.
