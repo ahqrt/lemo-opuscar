@@ -68,6 +68,13 @@ git merge upstream/main
 Node 20+、ffmpeg 7+（6.1 的 `loudnorm` 会误报音频长度，导致混流被拒）、Python 3.11+ 或 uv。
 本机实测：Node 22.22、ffmpeg 7.1、uv 0.12 都够；系统 Python 3.10 偏低，但 `setup.sh` 会用 uv 拉 3.12 建 venv，不影响。
 
+## 排错
+
+- **`npm ECONNRESET`**：装依赖时大包下载被掐断，重跑一次 `sh <技能目录>/scripts/setup.sh deps` 即可；网络差就加环境变量 `npm_config_fetch_retries=6`。
+- **渲染时报素材 404**（比如 `paper.jpg`、`fonts/f10.woff2`）：demo 源码不自带素材，`DEMO.md` 末尾的「One-time asset scripts」写了生成命令（`python paper.py`、`node fetch_fonts.mjs`）。这些只在你直接预览 demo 时才需要；跟着 agent 做自己的片子不影响。
+- **`! missing: ffmpeg7+`**：Ubuntu 24.04 自带 6.1 太旧，换[静态构建](https://johnvansickle.com/ffmpeg/)。
+- **技能没出现在 Harness 里**：确认软链接在 `~/.agents/skills/lemo-opuscar`，且它指向的 `SKILL.md` 里 `name: lemo-opuscar`。
+
 ## 卸载
 
 ```sh
